@@ -1,4 +1,4 @@
-const connection = require("../config/connection.js");
+const connection = require("./connection.js");
 const consoleTable = require("console.table");
 
 // Object Relational Mapper (ORM)

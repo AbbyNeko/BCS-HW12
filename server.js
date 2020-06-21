@@ -1,10 +1,46 @@
-const controller = require("../controller/employeeController.js");
+const controller = require("./controller/employeeController.js");
 const inquirer = require("inquirer");
-const Employee = require("../model/employees.js");
+const Employee = require("./model/employee.js");
 
 //Prompt for what action the user wants
 inquirer.prompt({
+    type: 'list',
+    name: 'useraction',
+    message: "What would you like to do today?",
+    choices: [
+        'View All Employees',
+        'View All Roles',
+        'View All Departments',
+        'Add New Employee',
+        'Add New Role',
+        'Add New Department',
+        'Update an Existing Role'
+    ]
+}).then(({useraction}) => {
 
-}).then(function() {
-
+    console.log(`action is ${useraction}`);
+/*
+    switch(useraction) {
+        case 'View All Employees':
+            Employee.getAllEmployees();
+            break;
+        case 'View All Roles': 
+            Employee.getAllRoles();
+            break;
+        case 'View All Departments': 
+            Employee.getAllDepartments();
+            break;
+        case 'Add New Employee': 
+            newEmployeePrompt();
+            break;
+        case 'Add New Role': 
+            newRolePrompt();
+            break;
+        case 'Add New Department': 
+            newDepartmentPrompt();
+            break;
+        case 'Update an Existing Role': 
+            promptUpdateToRole();
+    }
+*/
 });

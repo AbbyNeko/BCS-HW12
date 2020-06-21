@@ -17,6 +17,6 @@ function newDepartmentPrompt() {
 }
 
 //Ask User which role to update, which field to update and what the new value is for an Existing Role
-function promptUpdatesToRole() {
+function promptUpdateToRole() {
 
 }

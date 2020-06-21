@@ -8,7 +8,7 @@ const connection = mysql.createConnection({
 });
 
 
-connection.connect(function() {
+connection.connect(function(err) {
     if (err) throw err;
 
 });
