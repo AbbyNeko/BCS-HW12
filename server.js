@@ -1,4 +1,4 @@
-const controller = require("./controller/employeeController.js");
+const Controller = require("./controller/employeeController.js");
 const inquirer = require("inquirer");
 const Employee = require("./model/employee.js");
 
@@ -14,12 +14,13 @@ inquirer.prompt({
         'Add New Employee',
         'Add New Role',
         'Add New Department',
-        'Update an Existing Role'
+        'Update an Existing Role',
+        'Exit'
     ]
 }).then(({useraction}) => {
 
     console.log(`action is ${useraction}`);
-/*
+
     switch(useraction) {
         case 'View All Employees':
             Employee.getAllEmployees();
@@ -31,16 +32,19 @@ inquirer.prompt({
             Employee.getAllDepartments();
             break;
         case 'Add New Employee': 
-            newEmployeePrompt();
+            Controller.newEmployeePrompt();
             break;
         case 'Add New Role': 
-            newRolePrompt();
+            Controller.newRolePrompt();
             break;
         case 'Add New Department': 
-            newDepartmentPrompt();
+            Controller.newDepartmentPrompt();
             break;
         case 'Update an Existing Role': 
-            promptUpdateToRole();
+            Controller.promptUpdateToRole();
+            break;
+        case 'Exit':
+            process.exit();
     }
-*/
+
 });

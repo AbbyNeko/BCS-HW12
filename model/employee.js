@@ -1,10 +1,11 @@
 const orm = require("../config/orm.js");
+const util = require("util");
 
 let Employee = {
 
-    getAllDepartments: function() {
+    getAllDepartments: util.promisify(function() {
         orm.selectAll('departments');
-    },
+    }),
     getAllRoles: function() {
         orm.selectAll('roles');
     },
