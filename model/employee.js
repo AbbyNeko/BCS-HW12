@@ -36,8 +36,17 @@ let Employee = {
     addNewEmployee: function(newEmployeeObj) {
         orm.addNewRow('employees', ['first_name','last_name','role_id', 'manager_id',], newEmployeeObj);
     }, 
-    updateRole(id, tableCol, newValue) {
+    updateRole: function(id, tableCol, newValue) {
         orm.updateColumn(id, 'roles', tableCol, newValue);
+    }, 
+    deleteRole: function(id) {
+        orm.deleteRow('roles', id);
+    },
+    deleteEmployee: function(id) {
+        orm.deleteRow('employees', id);
+    }, 
+    deleteDepartment: function(id) {
+        orm.deleteRow('departments', id);
     }
 
 };

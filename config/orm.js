@@ -64,6 +64,16 @@ var orm = {
             console.log(`Successfully added a new record to ${table}`);
             connection.end();
         });
+
+    }, deleteRow: function(table, id) {
+
+        let queryString = "DELETE FROM ?? WHERE id = ?";
+        connection.query(queryString, [table, id], function(err, result) {
+            if (err) throw err;
+            console.log(`Successfully deleted record from ${table}`);
+            connection.end();
+        });
+
     }
 
 };

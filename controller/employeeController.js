@@ -162,6 +162,19 @@ const Router = {
 
             });
 
+        }, promptDelete(table) {
+
+                switch(table) {
+                    case 'departments':
+                        askWhichDeptToDelete();
+                        break;
+                    case 'roles':
+                        askWhichRoleToDelete();
+                        break;
+                    case 'employees':
+                        askWhichEmployeeToDelete();
+                }
+
         }
 
 };
@@ -210,6 +223,76 @@ function promptRoleDepartment(roleId) {
             
             let deptObj = allExistingDept.filter(dept => dept.name === department);
             Employee.updateRole(roleId, 'department_id', deptObj[0].id);
+    
+        });
+
+    });
+    
+}
+
+//Path if deleting department
+function askWhichDeptToDelete() {
+
+    Employee.returnAllDepartments(function(allExistingDept) {
+
+        inquirer.prompt({
+            type: 'list',
+            name: 'department',
+            message: 'What department do you want to delete?',
+            choices: allExistingDept
+        }).then(function({department}) {
+            
+            let deptObj = allExistingDept.filter(dept => dept.name === department);
+            Employee.deleteDepartment(deptObj[0].id);
+    
+        });
+
+    });
+    
+}
+
+//Path if deleting role
+function askWhichRoleToDelete() {
+
+    Employee.returnAllRoles(function(allExistingRoles) {
+
+        let allRolesArr = allExistingRoles.map(role => role.title);
+
+        inquirer.prompt({
+            type: 'list',
+            name: 'roleToDelete',
+            message: 'Which role do you want to delete?',
+            choices: allRolesArr
+        }).then(function({roleToDelete}) {
+            
+            let roleObj = allExistingRoles.filter(role => role.title == roleToDelete);
+            //console.log(JSON.stringify(roleObj));
+            Employee.deleteRole(roleObj[0].id);
+    
+        });
+
+    });
+    
+}
+
+//Path if deleting role
+function askWhichEmployeeToDelete() {
+
+    Employee.returnAllEmployees(function(allExistingEmployees) {
+
+        let allEmployeesArr = allExistingEmployees.map(employee => employee.first_name+' '+employee.last_name);
+
+        inquirer.prompt({
+            type: 'list',
+            name: 'employee',
+            message: 'What would be the new department for this role?',
+            choices: allEmployeesArr
+        }).then(function({employee}) {
+            let firstName = employee.split(' ')[0];
+            let lastName = employee.split(' ')[1];
+            let employeeObj = allExistingEmployees.filter(emp => emp.first_name === firstName && emp.last_name === lastName);
+
+            Employee.deleteEmployee(employeeObj[0].id);
     
         });
 

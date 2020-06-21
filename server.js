@@ -15,6 +15,9 @@ inquirer.prompt({
         'Add New Role',
         'Add New Department',
         'Update an Existing Role',
+        'Delete Department',
+        'Delete Role',
+        'Delete Employee',
         'Exit'
     ]
 }).then(({useraction}) => {
@@ -39,6 +42,15 @@ inquirer.prompt({
             break;
         case 'Add New Department': 
             Controller.newDepartmentPrompt();
+            break;
+        case 'Delete Employee': 
+            Controller.promptDelete('employees');
+            break;
+        case 'Delete Role': 
+            Controller.promptDelete('roles');
+            break;
+        case 'Delete Department': 
+            Controller.promptDelete('departments');
             break;
         case 'Update an Existing Role': 
             Controller.promptUpdateToRole();
