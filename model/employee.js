@@ -11,6 +11,21 @@ let Employee = {
     getAllEmployees: function() {
         orm.selectAll('employees');
     },
+    returnAllDepartments: function(cb) {
+        orm.returnAllData('departments', function(res) {
+            cb(res);
+        });
+    },
+    returnAllRoles: function(cb) {
+        orm.returnAllData('roles', function(res) {
+            cb(res);
+        });
+    },
+    returnAllEmployees: function(cb) {
+        orm.returnAllData('employees', function(res) {
+            cb(res);
+        });
+    },
     addNewDepartment: function(newDeptObj) {
         console.log(`new dept = ${JSON.stringify(newDeptObj)}`);
         orm.addNewRow('departments', ['name'], newDeptObj);

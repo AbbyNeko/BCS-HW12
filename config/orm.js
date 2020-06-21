@@ -14,7 +14,15 @@ var orm = {
         connection.query(queryString, [table], function(err, result) {
             if (err) throw err;
             console.table(result);
-            process.exit();
+            connection.end()
+        });
+  },
+  returnAllData: function(table, cb) {
+
+        let queryString = "SELECT * FROM ??";
+        connection.query(queryString, [table], function(err, result) {
+            if (err) throw err;
+            cb(result);
         });
   },
     updateColumn: function(id, table, column, newValue) {
@@ -22,30 +30,39 @@ var orm = {
         connection.query(queryString, [table, column, newValue, id], function(err, result) {
             if (err) throw err;
             console.log("Update was Successful");
-            process.exit();
+            connection.end()
         });
     },
     addNewRow: function(table, columns, newData) {
-        let queryString = "INSERT INTO ?? (??) VALUES(?)";
+        let queryString = "INSERT INTO ?? (??) VALUES(";
+
+        //Adding on ? value depending on count of columns
+        let first = true;
+        columns.forEach(col => {
+
+            if(first) {
+                queryString += '?';
+                first = false;
+            } else {
+                queryString += ', ?';
+            }
+
+        });
+        queryString += ')';
         
-        let newValues = ''; 
+        //Added new values to params array
+        let params = [table, columns];
 
         for(const field in newData) {
 
-            if(newValues.length > 0) {
-                newValues += ', '+newData[field];
-            } else {
-                newValues += newData[field];
-            }
+           params.push(newData[field]);
             
         }
 
-        console.log(newValues);
-
-        connection.query(queryString, [table, columns, newValues], function(err, result) {
+        connection.query(queryString, params, function(err, result) {
             if (err) throw err;
             console.log(`Successfully added a new record to ${table}`);
-            process.exit();
+            connection.end();
         });
     }
 
