@@ -1,4 +1,4 @@
-const Employee = require("./model/employee.js");
+const Employee = require("../model/employee.js");
 const inquirer = require("inquirer");
 
 //Ask User for field values for new Employee
