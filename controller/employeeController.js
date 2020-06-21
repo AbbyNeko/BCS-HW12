@@ -144,7 +144,7 @@ const Router = {
                         }
                     ]).then(function({roleToUpdate, column}) {
 
-                        let roleObj = allExistingRoles.filter(eachRole => eachRole.name === roleToUpdate);
+                        let roleObj = allExistingRoles.filter(eachRole => eachRole.title === roleToUpdate);
                         const roleId = roleObj[0].id;
 
                         switch(column) {
