@@ -27,7 +27,7 @@ let Employee = {
         });
     },
     addNewDepartment: function(newDeptObj) {
-        console.log(`new dept = ${JSON.stringify(newDeptObj)}`);
+        //console.log(`new dept = ${JSON.stringify(newDeptObj)}`);
         orm.addNewRow('departments', ['name'], newDeptObj);
     }, 
     addNewRole: function(newRoleObj) {

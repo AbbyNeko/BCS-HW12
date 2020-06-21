@@ -166,7 +166,7 @@ const Router = {
 
 };
 
-
+//Path if Title of Role is updated
 function promptRoleTitle(roleId) {
 
     inquirer.prompt({
@@ -181,6 +181,7 @@ function promptRoleTitle(roleId) {
 
 }
 
+//Path if Salary of Role is updated
 function promptRoleSalary(roleId) {
 
     inquirer.prompt({
@@ -195,6 +196,7 @@ function promptRoleSalary(roleId) {
     
 }
 
+//Path if Department of Role is updated
 function promptRoleDepartment(roleId) {
 
     Employee.returnAllDepartments(function(allExistingDept) {
