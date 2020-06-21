@@ -1,11 +1,10 @@
 const orm = require("../config/orm.js");
-const util = require("util");
 
 let Employee = {
 
-    getAllDepartments: util.promisify(function() {
+    getAllDepartments: function() {
         orm.selectAll('departments');
-    }),
+    },
     getAllRoles: function() {
         orm.selectAll('roles');
     },
@@ -13,6 +12,7 @@ let Employee = {
         orm.selectAll('employees');
     },
     addNewDepartment: function(newDeptObj) {
+        console.log(`new dept = ${JSON.stringify(newDeptObj)}`);
         orm.addNewRow('departments', ['name'], newDeptObj);
     }, 
     addNewRole: function(newRoleObj) {

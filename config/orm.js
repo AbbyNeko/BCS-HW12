@@ -27,7 +27,22 @@ var orm = {
     },
     addNewRow: function(table, columns, newData) {
         let queryString = "INSERT INTO ?? (??) VALUES(?)";
-        connection.query(queryString, [table, columns, newData], function(err, result) {
+        
+        let newValues = ''; 
+
+        for(const field in newData) {
+
+            if(newValues.length > 0) {
+                newValues += ', '+newData[field];
+            } else {
+                newValues += newData[field];
+            }
+            
+        }
+
+        console.log(newValues);
+
+        connection.query(queryString, [table, columns, newValues], function(err, result) {
             if (err) throw err;
             console.log(`Successfully added a new record to ${table}`);
             process.exit();
