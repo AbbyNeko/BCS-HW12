@@ -19,7 +19,7 @@ inquirer.prompt({
     ]
 }).then(({useraction}) => {
 
-    console.log(`action is ${useraction}`);
+    //console.log(`action is ${useraction}`);
 
     switch(useraction) {
         case 'View All Employees':
